@@ -3,14 +3,13 @@ import { useEffect, useState } from "react"
 
 export default function Navbar() {
 
+  const [menuOpen, setMenuOpen] = useState(false)
   const navigate = useNavigate()
-
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [role, setRole] = useState(null)
-
   const [darkMode, setDarkMode] = useState(false)
 
- 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme")
 
@@ -23,7 +22,6 @@ export default function Navbar() {
     }
   }, [])
 
-  
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark")
@@ -68,9 +66,9 @@ export default function Navbar() {
           RentWise
         </Link>
 
-        <div className="flex items-center gap-6 text-sm font-medium text-black dark:text-white">
+        {/* DESKTOP MENU */}
+        <div className="hidden md:flex items-center gap-6 text-sm font-medium text-black dark:text-white">
 
-          {/* ✅ HOME LINK ADDED */}
           <Link to="/" className="hover:opacity-70 transition">
             Home
           </Link>
@@ -152,9 +150,47 @@ export default function Navbar() {
               Logout
             </button>
           )}
-
         </div>
+
+        {/* MOBILE MENU BUTTON */}
+        <button
+          className="md:hidden text-2xl text-black dark:text-white"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
+
       </div>
+
+      {/* MOBILE DROPDOWN */}
+      {menuOpen && (
+        <div className="md:hidden flex flex-col gap-4 px-6 pb-4 bg-white dark:bg-black shadow-md text-sm font-medium text-black dark:text-white">
+
+          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link to="/explore" onClick={() => setMenuOpen(false)}>Explore</Link>
+
+          {isLoggedIn && role === "renter" && (
+            <>
+              <Link to="/add" onClick={() => setMenuOpen(false)}>Add Property</Link>
+              <Link to="/my-listings" onClick={() => setMenuOpen(false)}>My Listings</Link>
+            </>
+          )}
+
+          {isLoggedIn && role === "customer" && (
+            <Link to="/wishlist" onClick={() => setMenuOpen(false)}>Wishlist</Link>
+          )}
+
+          {!isLoggedIn ? (
+            <>
+              <Link to="/login" onClick={() => setMenuOpen(false)}>Login</Link>
+              <Link to="/register" onClick={() => setMenuOpen(false)}>Register</Link>
+            </>
+          ) : (
+            <button onClick={handleLogout}>Logout</button>
+          )}
+        </div>
+      )}
+
     </nav>
   )
 }
