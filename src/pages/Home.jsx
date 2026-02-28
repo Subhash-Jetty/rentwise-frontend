@@ -197,7 +197,9 @@ export default function Home() {
                 <p className="text-gray-500 dark:text-gray-400">
                   {property.locality}
                 </p>
-                 {/* Rent - Left */}
+                 <div className="flex justify-between items-center mt-3">
+
+  {/* Rent - Left */}
   <p className="text-indigo-600 font-bold text-lg">
     ₹{property.rent}
   </p>
@@ -211,6 +213,8 @@ export default function Home() {
         : "0"}
     </span>
   </div>
+
+</div>
 
               </div>
             </Link>

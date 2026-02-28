@@ -168,9 +168,24 @@ export default function PropertyDetails() {
           {property.locality}
         </p>
 
-        <p className="text-2xl font-bold text-brand-600 mb-4">
-          ₹{property.rent}
-        </p>
+        <div className="flex justify-between items-center mt-4">
+
+  {/* Rent */}
+  <p className="text-indigo-600 font-bold text-xl">
+    ₹{property.rent}
+  </p>
+
+  {/* Rating */}
+  <div className="flex items-center gap-1">
+    <span className="text-yellow-400 text-xl">★</span>
+    <span className="font-medium dark:text-gray-300">
+      {property.average_rating > 0
+        ? property.average_rating
+        : "0"}
+    </span>
+  </div>
+
+</div>
 
         <p className="text-gray-700 dark:text-gray-300 mb-4">
           {property.bedrooms} BHK • {property.area_sqft} sqft
