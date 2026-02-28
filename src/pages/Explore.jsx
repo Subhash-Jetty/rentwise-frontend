@@ -99,7 +99,16 @@ export default function Explore() {
             setCity(e.target.value)
             setLocality("")
           }}
-          className="border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 dark:text-white rounded-xl px-4 py-3"
+           className="px-4 py-2 rounded-xl border border-gray-300 
+             dark:border-gray-700 
+             bg-white dark:bg-gray-800 
+             dark:text-white
+             shadow-sm
+             focus:outline-none 
+             focus:ring-2 
+             focus:ring-indigo-500
+             hover:border-indigo-400
+             transition-all duration-200"
         >
           <option value="">City</option>
           {Object.keys(filtersData).map((c) => (
@@ -108,11 +117,21 @@ export default function Explore() {
         </select>
 
         <select
-          value={locality}
-          onChange={(e) => setLocality(e.target.value)}
-          disabled={!city}
-          className="border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 dark:text-white rounded-xl px-4 py-3 disabled:opacity-40"
-        >
+  value={locality}
+  onChange={(e) => setLocality(e.target.value)}
+  disabled={!city}
+  className="px-4 py-2 rounded-xl border border-gray-300 
+             dark:border-gray-700 
+             bg-white dark:bg-gray-800 
+             dark:text-white
+             shadow-sm
+             focus:outline-none 
+             focus:ring-2 
+             focus:ring-indigo-500
+             hover:border-indigo-400
+             transition-all duration-200
+             disabled:opacity-60 disabled:cursor-not-allowed"
+>
           <option value="">Locality</option>
           {city && filtersData[city]?.map((loc) => (
             <option key={loc}>{loc}</option>
@@ -120,10 +139,19 @@ export default function Explore() {
         </select>
 
         <select
-          value={bedrooms}
-          onChange={(e) => setBedrooms(e.target.value)}
-          className="border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 dark:text-white rounded-xl px-4 py-3"
-        >
+  value={bedrooms}
+  onChange={(e) => setBedrooms(e.target.value)}
+  className="px-4 py-2 rounded-xl border border-gray-300 
+             dark:border-gray-700 
+             bg-white dark:bg-gray-800 
+             dark:text-white
+             shadow-sm
+             focus:outline-none 
+             focus:ring-2 
+             focus:ring-indigo-500
+             hover:border-indigo-400
+             transition-all duration-200"
+>
           <option value="">Bedrooms</option>
           <option value="1">1</option>
           <option value="2">2</option>
