@@ -48,7 +48,7 @@ export default function MyListings() {
 
        <div className="mb-10">
   <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-    Add Property
+    My Listings
   </h1>
 </div>
 
