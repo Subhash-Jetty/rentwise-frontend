@@ -184,7 +184,7 @@ export default function Home() {
             >
               {property.images?.length > 0 && (
                 <img
-                  src={property.images[0]}
+                  src={`https://rentwise-backend-du7p.onrender.com/uploads/${property.images[0]?.split("/uploads/")[1]}`}
                   className="w-full h-60 object-cover"
                   alt=""
                 />

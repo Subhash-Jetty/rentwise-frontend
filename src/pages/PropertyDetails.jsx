@@ -133,11 +133,11 @@ export default function PropertyDetails() {
         {property.images && property.images.length > 0 && (
           <div className="relative mb-8">
 
-            <img
-              src={property.images[currentImage]}
-              alt=""
-              className="w-full h-96 object-cover rounded-lg"
-            />
+           <img
+  src={`https://rentwise-backend-du7p.onrender.com/uploads/${property.images[currentImage]?.split("/uploads/")[1]}`}
+  alt=""
+  className="w-full h-96 object-cover rounded-lg"
+/>
 
             {property.images.length > 1 && (
               <>

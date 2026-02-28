@@ -66,11 +66,11 @@ export default function MyListings() {
               >
 
                 {p.images && p.images.length > 0 && (
-  <img
-    src={p.images[0]}
-    alt=""
-    className="w-full h-40 object-cover rounded mb-4"
-  />
+<img
+  src={`https://rentwise-backend-du7p.onrender.com/uploads/${p.images[0]?.split("/uploads/")[1]}`}
+  alt=""
+  className="w-full h-40 object-cover rounded mb-4"
+/>
 )}
 
                 <h2 className="font-semibold text-lg text-black dark:text-white">

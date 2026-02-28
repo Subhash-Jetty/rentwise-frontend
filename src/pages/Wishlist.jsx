@@ -49,10 +49,10 @@ export default function Wishlist() {
             >
               {property.images?.length > 0 && (
                 <img
-                  src={property.images[0]}
-                  className="w-full h-56 object-cover"
-                  alt=""
-                />
+  src={`https://rentwise-backend-du7p.onrender.com/uploads/${property.images[0]?.split("/uploads/")[1]}`}
+  className="w-full h-56 object-cover"
+  alt=""
+/>
               )}
 
               <div className="p-6">
