@@ -228,17 +228,24 @@ export default function Explore() {
                 <h2 className="font-semibold dark:text-white">
                   {property.city}
                 </h2>
-                <p className="text-gray-500 dark:text-gray-400">
-                  {property.locality}
-                </p>
-                <div className="flex items-center gap-2 mt-2">
-                <span className="text-yellow-500">★</span>
-                <span className="text-sm text-gray-600 dark:text-gray-300">
-                   {property.average_rating > 0
-                   ? property.average_rating
-                     : "No ratings"}
-                    </span>
-                </div>
+                <div className="flex justify-between items-center mt-3">
+  
+  {/* Rent - Left */}
+  <p className="text-indigo-600 font-bold text-lg">
+    ₹{property.rent}
+  </p>
+
+  {/* Rating - Right */}
+  <div className="flex items-center gap-1">
+    <span className="text-yellow-400 text-lg">★</span>
+    <span className="font-medium dark:text-gray-300">
+      {property.average_rating > 0
+        ? property.average_rating
+        : "0"}
+    </span>
+  </div>
+
+</div>
                 <p className="text-indigo-600 font-bold mt-3">
                   ₹{property.rent}
                 </p>
