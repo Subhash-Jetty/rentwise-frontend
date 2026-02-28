@@ -44,16 +44,14 @@ export default function AddProperty() {
       }
 
       await axios.post(
-        "https://rentwise-backend-du7p.onrender.com/properties/",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data"
-          }
-        }
-      )
-
+  "https://rentwise-backend-du7p.onrender.com/properties/",
+  formData,
+  {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+)
       navigate("/")
 
     } catch (err) {
