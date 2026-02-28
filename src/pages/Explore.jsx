@@ -246,9 +246,7 @@ export default function Explore() {
   </div>
 
 </div>
-                <p className="text-indigo-600 font-bold mt-3">
-                  ₹{property.rent}
-                </p>
+                
               </div>
             </Link>
           </div>
