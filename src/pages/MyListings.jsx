@@ -81,20 +81,18 @@ export default function MyListings() {
                   {p.locality}
                 </p>
 
-                <div className="flex justify-between items-center mt-4">
+                <div className="flex justify-between items-center mt-3">
 
-  {/* Rent */}
-  <p className="text-indigo-600 font-bold text-xl">
-    ₹{property.rent}
+  {/* Rent - Left */}
+  <p className="text-blue-600 font-semibold text-lg">
+    ₹{Math.round(p.rent)}
   </p>
 
-  {/* Rating */}
+  {/* Rating - Right */}
   <div className="flex items-center gap-1">
-    <span className="text-yellow-400 text-xl">★</span>
-    <span className="font-medium dark:text-gray-300">
-      {property.average_rating > 0
-        ? property.average_rating
-        : "0"}
+    <span className="text-yellow-400">★</span>
+    <span className="text-sm font-medium dark:text-gray-300">
+      {p.average_rating > 0 ? p.average_rating : "0"}
     </span>
   </div>
 
