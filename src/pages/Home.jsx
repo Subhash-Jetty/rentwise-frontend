@@ -197,6 +197,14 @@ export default function Home() {
                 <p className="text-gray-500 dark:text-gray-400">
                   {property.locality}
                 </p>
+                <div className="flex items-center gap-2 mt-2">
+  <span className="text-yellow-500">★</span>
+  <span className="text-sm text-gray-600 dark:text-gray-300">
+    {property.average_rating > 0
+      ? property.average_rating
+      : "No ratings"}
+  </span>
+</div>
                 <p className="text-indigo-600 font-bold mt-3">
                   ₹{property.rent}
                 </p>

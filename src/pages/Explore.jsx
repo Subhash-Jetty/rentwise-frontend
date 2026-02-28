@@ -218,10 +218,10 @@ export default function Explore() {
             <Link to={`/property/${property.id}`}>
               {property.images?.length > 0 && (
                 <img
-  src={`https://rentwise-backend-du7p.onrender.com/uploads/${property.images[0]?.split("/uploads/")[1]}`}
-  className="w-full h-60 object-cover"
-  alt=""
-/>
+                   src={`https://rentwise-backend-du7p.onrender.com/uploads/${property.images[0]?.split("/uploads/")[1]}`}
+                   className="w-full h-60 object-cover"
+                   alt=""
+                />
               )}
 
               <div className="p-6">
@@ -231,6 +231,14 @@ export default function Explore() {
                 <p className="text-gray-500 dark:text-gray-400">
                   {property.locality}
                 </p>
+                <div className="flex items-center gap-2 mt-2">
+                <span className="text-yellow-500">★</span>
+                <span className="text-sm text-gray-600 dark:text-gray-300">
+                   {property.average_rating > 0
+                   ? property.average_rating
+                     : "No ratings"}
+                    </span>
+                </div>
                 <p className="text-indigo-600 font-bold mt-3">
                   ₹{property.rent}
                 </p>
