@@ -13,7 +13,7 @@ export default function Wishlist() {
 
   const fetchWishlist = async () => {
     const res = await axios.get(
-      "https://rentwise-backend-du7p.onrender.com/properties/wishlist",
+      "https://rentwise-backend-1-gnu2.onrender.com/properties/wishlist",
       { headers: { Authorization: `Bearer ${token}` } }
     )
     setProperties(res.data)
@@ -21,7 +21,7 @@ export default function Wishlist() {
 
   const removeFromWishlist = async (id) => {
     await axios.delete(
-      `https://rentwise-backend-du7p.onrender.com/properties/${id}/wishlist`,
+      `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}/wishlist`,
       { headers: { Authorization: `Bearer ${token}` } }
     )
     fetchWishlist()
@@ -49,7 +49,7 @@ export default function Wishlist() {
             >
               {property.images?.length > 0 && (
                 <img
-  src={`https://rentwise-backend-du7p.onrender.com/uploads/${property.images[0]?.split("/uploads/")[1]}`}
+  src={`https://rentwise-backend-1-gnu2.onrender.com/uploads/${property.images[0]?.split("/uploads/")[1]}`}
   className="w-full h-56 object-cover"
   alt=""
 />

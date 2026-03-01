@@ -20,7 +20,7 @@ export default function Home() {
   const fetchFeatured = async () => {
     try {
       const res = await axios.get(
-        "https://rentwise-backend-du7p.onrender.com/properties/all?per_page=6&page=1"
+        "https://rentwise-backend-1-gnu2.onrender.com/properties/all?per_page=6&page=1"
       )
       setFeatured(res.data.properties || [])
     } catch (err) {
@@ -30,7 +30,7 @@ export default function Home() {
 
   const fetchFilters = async () => {
     try {
-      const res = await axios.get("https://rentwise-backend-du7p.onrender.com/properties/filters")
+      const res = await axios.get("https://rentwise-backend-1-gnu2.onrender.com/properties/filters")
       setFiltersData(res.data.cities || {})
     } catch (err) {
       console.error(err)
@@ -184,7 +184,7 @@ export default function Home() {
             >
               {property.images?.length > 0 && (
                 <img
-                  src={`https://rentwise-backend-du7p.onrender.com/uploads/${property.images[0]?.split("/uploads/")[1]}`}
+                  src={`https://rentwise-backend-1-gnu2.onrender.com/uploads/${property.images[0]?.split("/uploads/")[1]}`}
                   className="w-full h-60 object-cover"
                   alt=""
                 />

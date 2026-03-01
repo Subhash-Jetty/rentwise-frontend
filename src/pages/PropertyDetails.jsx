@@ -26,7 +26,7 @@ export default function PropertyDetails() {
   const fetchProperty = async () => {
     try {
       const res = await axios.get(
-        `https://rentwise-backend-du7p.onrender.com/properties/${id}`
+        `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}`
       )
       setProperty(res.data)
     } catch (err) {
@@ -38,7 +38,7 @@ export default function PropertyDetails() {
   const handleAnalyze = async () => {
     try {
       const res = await axios.post(
-        `https://rentwise-backend-du7p.onrender.com/analysis/${id}`,
+        `https://rentwise-backend-1-gnu2.onrender.com/analysis/${id}`,
         {},
         {
           headers: token
@@ -60,7 +60,7 @@ export default function PropertyDetails() {
 
     try {
       await axios.post(
-        `https://rentwise-backend-du7p.onrender.com/properties/${id}/wishlist`,
+        `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}/wishlist`,
         {},
         {
           headers: {
@@ -87,7 +87,7 @@ export default function PropertyDetails() {
 
     try {
       await axios.post(
-        `https://rentwise-backend-du7p.onrender.com/properties/${id}/review`,
+        `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}/review`,
         { rating: Number(rating), comment },
         {
           headers: {
@@ -134,7 +134,7 @@ export default function PropertyDetails() {
           <div className="relative mb-8">
 
            <img
-  src={`https://rentwise-backend-du7p.onrender.com/uploads/${property.images[currentImage]?.split("/uploads/")[1]}`}
+  src={`https://rentwise-backend-1-gnu2.onrender.com/uploads/${property.images[currentImage]?.split("/uploads/")[1]}`}
   alt=""
   className="w-full h-96 object-cover rounded-lg"
 />

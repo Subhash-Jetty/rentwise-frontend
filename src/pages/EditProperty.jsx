@@ -24,7 +24,7 @@ export default function EditProperty() {
 
   const fetchProperty = async () => {
     const res = await axios.get(
-      `https://rentwise-backend-du7p.onrender.com/properties/${id}`
+      `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}`
     )
     setForm(res.data)
   }
@@ -40,7 +40,7 @@ export default function EditProperty() {
     e.preventDefault()
 
     await axios.put(
-      `https://rentwise-backend-du7p.onrender.com/properties/${id}`,
+      `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}`,
       form,
       {
         headers: {

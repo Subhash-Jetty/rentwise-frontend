@@ -30,7 +30,7 @@ export default function Explore() {
   }, [page])
 
   const fetchFilters = async () => {
-    const res = await axios.get("https://rentwise-backend-du7p.onrender.com/properties/filters")
+    const res = await axios.get("https://rentwise-backend-1-gnu2.onrender.com/properties/filters")
     setFiltersData(res.data.cities || {})
   }
 
@@ -38,7 +38,7 @@ export default function Explore() {
     setLoading(true)
 
     const res = await axios.get(
-      `https://rentwise-backend-du7p.onrender.com/properties/all?city=${city}&locality=${locality}&bedrooms=${bedrooms}&max_price=${priceRange}&sort=${sort}&page=${page}&per_page=15`,
+      `https://rentwise-backend-1-gnu2.onrender.com/properties/all?city=${city}&locality=${locality}&bedrooms=${bedrooms}&max_price=${priceRange}&sort=${sort}&page=${page}&per_page=15`,
       {
         headers: token ? { Authorization: `Bearer ${token}` } : {}
       }
@@ -58,12 +58,12 @@ export default function Explore() {
 
     if (isInWishlist) {
       await axios.delete(
-        `https://rentwise-backend-du7p.onrender.com/properties/${propertyId}/wishlist`,
+        `https://rentwise-backend-1-gnu2.onrender.com/properties/${propertyId}/wishlist`,
         { headers: { Authorization: `Bearer ${token}` } }
       )
     } else {
       await axios.post(
-        `https://rentwise-backend-du7p.onrender.com/properties/${propertyId}/wishlist`,
+        `https://rentwise-backend-1-gnu2.onrender.com/properties/${propertyId}/wishlist`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -246,7 +246,7 @@ export default function Explore() {
             <Link to={`/property/${property.id}`}>
               {property.images?.length > 0 && (
                 <img
-                   src={`https://rentwise-backend-du7p.onrender.com/uploads/${property.images[0]?.split("/uploads/")[1]}`}
+                   src={`https://rentwise-backend-1-gnu2.onrender.com/uploads/${property.images[0]?.split("/uploads/")[1]}`}
                    className="w-full h-60 object-cover"
                    alt=""
                 />
