@@ -67,7 +67,7 @@ export default function MyListings() {
 
                 {p.images && p.images.length > 0 && (
 <img
-  src={`https://rentwise-backend-1-gnu2.onrender.com/uploads/${p.images[0]?.split("/uploads/")[1]}`}
+  src={property.images[0]}
   alt=""
   className="w-full h-40 object-cover rounded mb-4"
 />

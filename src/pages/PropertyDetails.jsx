@@ -134,7 +134,7 @@ export default function PropertyDetails() {
           <div className="relative mb-8">
 
            <img
-  src={`https://rentwise-backend-1-gnu2.onrender.com/uploads/${property.images[currentImage]?.split("/uploads/")[1]}`}
+  src={property.images[0]}
   alt=""
   className="w-full h-96 object-cover rounded-lg"
 />
