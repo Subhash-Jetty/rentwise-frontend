@@ -67,7 +67,7 @@ export default function MyListings() {
 
                 {p.images && p.images.length > 0 && (
 <img
-  src={property.images[0]}
+  src={p.images[0]}
   alt=""
   className="w-full h-40 object-cover rounded mb-4"
 />
