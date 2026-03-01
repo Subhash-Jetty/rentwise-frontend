@@ -261,11 +261,11 @@ export default function Explore() {
                 <h2 className="font-semibold dark:text-white">
                   {property.city}
                 </h2>
-                <div className="flex justify-between items-center mt-3">
+                <div className="flex justify-between items-center mt-1">
                   <p className="text-sm text-gray-500 dark:text-gray-400">
   {property.locality}
 </p>
-  
+  <br/>
   {/* Rent - Left */}
   <p className="text-indigo-600 font-bold text-lg">
     ₹{property.rent}
