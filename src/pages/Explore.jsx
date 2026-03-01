@@ -225,61 +225,72 @@ export default function Explore() {
       </div>
 
       {/* LISTINGS */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {properties.map((property) => (
-          <div
-            key={property.id}
-            className="relative bg-white dark:bg-gray-900 rounded-2xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden"
-          >
-
-            <button
-              onClick={() =>
-                toggleWishlist(property.id, property.is_in_wishlist)
-              }
-              className={`absolute top-4 right-4 text-2xl ${
-                property.is_in_wishlist ? "text-red-500" : "text-gray-400"
-              }`}
-            >
-              ♥
-            </button>
-
-            <Link to={`/property/${property.id}`}>
-              {property.images?.length > 0 && (
-                <img
-                   src={`https://rentwise-backend-1-gnu2.onrender.com/uploads/${property.images[0]?.split("/uploads/")[1]}`}
-                   className="w-full h-60 object-cover"
-                   alt=""
-                />
-              )}
-
-              <div className="p-6">
-                <h2 className="font-semibold dark:text-white">
-                  {property.city}
-                </h2>
-                <div className="flex justify-between items-center mt-3">
-  
-  {/* Rent - Left */}
-  <p className="text-indigo-600 font-bold text-lg">
-    ₹{property.rent}
-  </p>
-
-  {/* Rating - Right */}
-  <div className="flex items-center gap-1">
-    <span className="text-yellow-400 text-lg">★</span>
-    <span className="font-medium dark:text-gray-300">
-      {property.average_rating > 0
-        ? property.average_rating
-        : "0"}
-    </span>
+{properties.length === 0 ? (
+  <div className="text-center py-20">
+    <div className="text-5xl mb-4">🏠</div>
+    <h2 className="text-2xl font-semibold text-gray-600 dark:text-gray-300">
+      No properties found
+    </h2>
+    <p className="mt-2 text-gray-500 dark:text-gray-400">
+      Try adjusting your filters.
+    </p>
   </div>
+) : (
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {properties.map((property) => (
+      <div
+        key={property.id}
+        className="relative bg-white dark:bg-gray-900 rounded-2xl shadow border border-gray-200 dark:border-gray-700 overflow-hidden"
+      >
 
-</div>
-                
-              </div>
-            </Link>
+        {/* Wishlist */}
+        <button
+          onClick={() =>
+            toggleWishlist(property.id, property.is_in_wishlist)
+          }
+          className={`absolute top-4 right-4 text-2xl ${
+            property.is_in_wishlist ? "text-red-500" : "text-gray-400"
+          }`}
+        >
+          ♥
+        </button>
+
+        {/* Image */}
+        <Link to={`/property/${property.id}`}>
+          {property.images?.length > 0 && (
+            <img
+              src={property.images[0]}
+              alt="Property"
+              className="w-full h-48 object-cover"
+            />
+          )}
+        </Link>
+
+        {/* Content */}
+        <div className="p-5">
+          <h2 className="text-lg font-bold text-gray-900 dark:text-white">
+            {property.city}
+          </h2>
+
+          {/* LOCALITY */}
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            {property.locality}
+          </p>
+
+          <div className="flex items-center justify-between mt-3">
+            <p className="text-indigo-600 font-semibold">
+              ₹{property.price}
+            </p>
+
+            <div className="flex items-center gap-1 text-yellow-500">
+              ⭐ {property.rating || 0}
+            </div>
           </div>
-        ))}
+        </div>
       </div>
+    ))}
+  </div>
+)}
 
       {/* PAGINATION */}
       {totalPages > 1 && (
