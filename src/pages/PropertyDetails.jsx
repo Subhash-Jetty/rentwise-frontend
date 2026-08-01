@@ -26,7 +26,7 @@ export default function PropertyDetails() {
   const fetchProperty = async () => {
     try {
       const res = await axios.get(
-        `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}`
+        `/properties/${id}`
       )
       setProperty(res.data)
     } catch (err) {
@@ -38,13 +38,8 @@ export default function PropertyDetails() {
   const handleAnalyze = async () => {
     try {
       const res = await axios.post(
-        `https://rentwise-backend-1-gnu2.onrender.com/analysis/${id}`,
-        {},
-        {
-          headers: token
-            ? { Authorization: `Bearer ${token}` }
-            : {}
-        }
+        `/analysis/${id}`,
+        {}
       )
       setAnalysis(res.data.market_analysis)
     } catch (err) {
@@ -60,13 +55,8 @@ export default function PropertyDetails() {
 
     try {
       await axios.post(
-        `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}/wishlist`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
+        `/properties/${id}/wishlist`,
+        {}
       )
       setWishlistAdded(true)
     } catch (err) {
@@ -87,14 +77,8 @@ export default function PropertyDetails() {
 
     try {
       await axios.post(
-        `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}/review`,
-        { rating: Number(rating), comment },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json"
-          }
-        }
+        `/properties/${id}/review`,
+        { rating: Number(rating), comment }
       )
 
       setSuccess("Review added successfully.")
@@ -134,7 +118,7 @@ export default function PropertyDetails() {
           <div className="relative mb-8">
 
            <img
-  src={property.images[0]}
+  src={property.images[currentImage]}
   alt=""
   className="w-full h-96 object-cover rounded-lg"
 />

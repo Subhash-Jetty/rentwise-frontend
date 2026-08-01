@@ -30,7 +30,7 @@ export default function Explore() {
   }, [page])
 
   const fetchFilters = async () => {
-    const res = await axios.get("https://rentwise-backend-1-gnu2.onrender.com/properties/filters")
+    const res = await axios.get("/properties/filters")
     setFiltersData(res.data.cities || {})
   }
 
@@ -38,10 +38,7 @@ export default function Explore() {
     setLoading(true)
 
     const res = await axios.get(
-      `https://rentwise-backend-1-gnu2.onrender.com/properties/all?city=${city}&locality=${locality}&bedrooms=${bedrooms}&max_price=${priceRange}&sort=${sort}&page=${page}&per_page=15`,
-      {
-        headers: token ? { Authorization: `Bearer ${token}` } : {}
-      }
+      `/properties/all?city=${city}&locality=${locality}&bedrooms=${bedrooms}&max_price=${priceRange}&sort=${sort}&page=${page}&per_page=15`
     )
 
     setProperties(res.data.properties || [])
@@ -58,14 +55,12 @@ export default function Explore() {
 
     if (isInWishlist) {
       await axios.delete(
-        `https://rentwise-backend-1-gnu2.onrender.com/properties/${propertyId}/wishlist`,
-        { headers: { Authorization: `Bearer ${token}` } }
+        `/properties/${propertyId}/wishlist`
       )
     } else {
       await axios.post(
-        `https://rentwise-backend-1-gnu2.onrender.com/properties/${propertyId}/wishlist`,
-        {},
-        { headers: { Authorization: `Bearer ${token}` } }
+        `/properties/${propertyId}/wishlist`,
+        {}
       )
     }
 

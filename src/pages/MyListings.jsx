@@ -14,12 +14,7 @@ export default function MyListings() {
   const fetchMine = async () => {
     try {
       const res = await axios.get(
-        "https://rentwise-backend-1-gnu2.onrender.com/properties/mine",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        }
+        "/properties/mine"
       )
       setProperties(res.data)
     } catch (err) {
@@ -31,12 +26,7 @@ export default function MyListings() {
     if (!window.confirm("Are you sure you want to delete this property?")) return
 
     await axios.delete(
-      `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
+      `/properties/${id}`
     )
 
     fetchMine()

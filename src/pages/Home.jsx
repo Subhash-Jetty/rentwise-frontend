@@ -20,7 +20,7 @@ export default function Home() {
   const fetchFeatured = async () => {
     try {
       const res = await axios.get(
-        "https://rentwise-backend-1-gnu2.onrender.com/properties/all?per_page=6&page=1"
+        "/properties/all?per_page=6&page=1"
       )
       setFeatured(res.data.properties || [])
     } catch (err) {
@@ -30,7 +30,7 @@ export default function Home() {
 
   const fetchFilters = async () => {
     try {
-      const res = await axios.get("https://rentwise-backend-1-gnu2.onrender.com/properties/filters")
+      const res = await axios.get("/properties/filters")
       setFiltersData(res.data.cities || {})
     } catch (err) {
       console.error(err)

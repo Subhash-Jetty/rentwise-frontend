@@ -19,7 +19,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        "https://rentwise-backend-1-gnu2.onrender.com/auth/login",
+        "/auth/login",
         { email, password }
       )
 

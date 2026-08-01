@@ -20,7 +20,7 @@ export default function Register() {
 
     try {
       await axios.post(
-        "https://rentwise-backend-1-gnu2.onrender.com/auth/register",
+        "/auth/register",
         { email, password, role }
       )
 

@@ -13,16 +13,14 @@ export default function Wishlist() {
 
   const fetchWishlist = async () => {
     const res = await axios.get(
-      "https://rentwise-backend-1-gnu2.onrender.com/properties/wishlist",
-      { headers: { Authorization: `Bearer ${token}` } }
+      "/properties/wishlist"
     )
     setProperties(res.data)
   }
 
   const removeFromWishlist = async (id) => {
     await axios.delete(
-      `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}/wishlist`,
-      { headers: { Authorization: `Bearer ${token}` } }
+      `/properties/${id}/wishlist`
     )
     fetchWishlist()
   }

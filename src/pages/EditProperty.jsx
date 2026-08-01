@@ -24,7 +24,7 @@ export default function EditProperty() {
 
   const fetchProperty = async () => {
     const res = await axios.get(
-      `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}`
+      `/properties/${id}`
     )
     setForm(res.data)
   }
@@ -40,23 +40,18 @@ export default function EditProperty() {
     e.preventDefault()
 
     await axios.put(
-      `https://rentwise-backend-1-gnu2.onrender.com/properties/${id}`,
-      form,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
+      `/properties/${id}`,
+      form
     )
 
     navigate("/my-listings")
   }
 
   return (
-    <div className="min-h-screen bg-white px-12 py-12">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors px-12 py-12">
       <div className="max-w-2xl mx-auto">
 
-        <h1 className="text-3xl font-semibold mb-8">
+        <h1 className="text-3xl font-semibold mb-8 dark:text-white">
           Edit Property
         </h1>
 
@@ -66,46 +61,46 @@ export default function EditProperty() {
             name="city"
             value={form.city}
             onChange={handleChange}
-            className="border p-3 w-full rounded"
+            className="border p-3 w-full rounded dark:border-gray-700 dark:bg-gray-800 dark:text-white"
           />
 
           <input
             name="locality"
             value={form.locality}
             onChange={handleChange}
-            className="border p-3 w-full rounded"
+            className="border p-3 w-full rounded dark:border-gray-700 dark:bg-gray-800 dark:text-white"
           />
 
           <input
             name="bedrooms"
             value={form.bedrooms}
             onChange={handleChange}
-            className="border p-3 w-full rounded"
+            className="border p-3 w-full rounded dark:border-gray-700 dark:bg-gray-800 dark:text-white"
           />
 
           <input
             name="area_sqft"
             value={form.area_sqft}
             onChange={handleChange}
-            className="border p-3 w-full rounded"
+            className="border p-3 w-full rounded dark:border-gray-700 dark:bg-gray-800 dark:text-white"
           />
 
           <input
             name="rent"
             value={form.rent}
             onChange={handleChange}
-            className="border p-3 w-full rounded"
+            className="border p-3 w-full rounded dark:border-gray-700 dark:bg-gray-800 dark:text-white"
           />
 
           <textarea
             name="description"
             value={form.description}
             onChange={handleChange}
-            className="border p-3 w-full rounded"
+            className="border p-3 w-full rounded dark:border-gray-700 dark:bg-gray-800 dark:text-white"
           />
 
           <button
-            className="bg-black text-white px-6 py-3 rounded"
+            className="bg-indigo-600 hover:bg-indigo-500 text-white px-6 py-3 rounded-xl transition"
           >
             Update Property
           </button>
