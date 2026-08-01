@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import axios from "../api/axios";
 import { Link } from "react-router-dom"
+import { FALLBACK_PROPERTY_IMAGE } from "../constants/images"
 
 export default function MyListings() {
 
@@ -54,13 +55,11 @@ export default function MyListings() {
                 className="border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-lg p-4 hover:shadow-lg transition"
               >
 
-                {p.images && p.images.length > 0 && (
 <img
-  src={p.images[0]}
+  src={p.images?.[0] || FALLBACK_PROPERTY_IMAGE}
   alt=""
   className="w-full h-40 object-cover rounded mb-4"
 />
-)}
 
                 <h2 className="font-semibold text-lg text-black dark:text-white">
                   {p.city}

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import axios from "../api/axios";
 import { Link } from "react-router-dom"
+import { FALLBACK_PROPERTY_IMAGE } from "../constants/images"
 
 export default function Wishlist() {
 
@@ -44,13 +45,11 @@ export default function Wishlist() {
               key={property.id}
               className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg overflow-hidden transition-colors"
             >
-              {property.images?.length > 0 && (
-                <img
-  src={property.images[0]}
+              <img
+  src={property.images?.[0] || FALLBACK_PROPERTY_IMAGE}
   className="w-full h-56 object-cover"
   alt=""
 />
-              )}
 
               <div className="p-6">
                 <h2 className="font-semibold text-black dark:text-white">

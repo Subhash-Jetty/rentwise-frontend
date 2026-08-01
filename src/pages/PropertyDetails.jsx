@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from "../api/axios";
+import { FALLBACK_PROPERTY_IMAGE } from "../constants/images"
 
 export default function PropertyDetails() {
 
@@ -114,16 +115,15 @@ export default function PropertyDetails() {
     <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 px-6 md:px-12 py-12 transition-colors duration-300">
       <div className="max-w-4xl mx-auto">
 
-        {property.images && property.images.length > 0 && (
-          <div className="relative mb-8">
+        <div className="relative mb-8">
 
-           <img
-  src={property.images[currentImage]}
+          <img
+  src={property.images?.[currentImage] || FALLBACK_PROPERTY_IMAGE}
   alt=""
   className="w-full h-96 object-cover rounded-lg"
 />
 
-            {property.images.length > 1 && (
+            {property.images?.length > 1 && (
               <>
                 <button
                   onClick={prevImage}
@@ -142,7 +142,6 @@ export default function PropertyDetails() {
             )}
 
           </div>
-        )}
 
         <h1 className="text-3xl font-semibold mb-2 text-gray-900 dark:text-white">
           {property.city}

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import axios from "../api/axios";
 import { Link, useLocation } from "react-router-dom"
+import { FALLBACK_PROPERTY_IMAGE } from "../constants/images"
 
 export default function Explore() {
 
@@ -260,13 +261,11 @@ export default function Explore() {
             
 
             <Link to={`/property/${property.id}`}>
-              {property.images?.length > 0 && (
-                <img
-                   src={property.images[0]}
-                   className="w-full h-60 object-cover"
-                   alt=""
-                />
-              )}
+              <img
+                src={property.images?.[0] || FALLBACK_PROPERTY_IMAGE}
+                className="w-full h-60 object-cover"
+                alt=""
+              />
 
               <div className="p-6">
                 <h2 className="font-semibold dark:text-white">

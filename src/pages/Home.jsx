@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import axios from "../api/axios";
 import { Link, useNavigate } from "react-router-dom"
+import { FALLBACK_PROPERTY_IMAGE } from "../constants/images"
 
 export default function Home() {
 
@@ -182,13 +183,11 @@ export default function Home() {
                 hover:shadow-lg transition
               "
             >
-              {property.images?.length > 0 && (
-                <img
-                  src={property.images[0]}
-                  className="w-full h-60 object-cover"
-                  alt=""
-                />
-              )}
+              <img
+                src={property.images?.[0] || FALLBACK_PROPERTY_IMAGE}
+                className="w-full h-60 object-cover"
+                alt=""
+              />
 
               <div className="p-6">
                 <h2 className="font-semibold text-gray-900 dark:text-white">
