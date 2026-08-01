@@ -1,26 +1,25 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import axios from "../api/axios";
 import { Link } from "react-router-dom"
 
 export default function MyListings() {
 
   const [properties, setProperties] = useState([])
-  const token = localStorage.getItem("token")
 
-  useEffect(() => {
-    fetchMine()
-  }, [])
-
-  const fetchMine = async () => {
+  const fetchMine = useCallback(async () => {
     try {
       const res = await axios.get(
         "/properties/mine"
       )
       setProperties(res.data)
-    } catch (err) {
+    } catch {
       console.log("Failed to fetch listings")
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    fetchMine()
+  }, [fetchMine])
 
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this property?")) return

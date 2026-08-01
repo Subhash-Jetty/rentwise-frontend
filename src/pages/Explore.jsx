@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import axios from "../api/axios";
 import { Link, useLocation } from "react-router-dom"
 
@@ -21,30 +21,42 @@ export default function Explore() {
   const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    fetchFilters()
-  }, [])
-
-  useEffect(() => {
-    fetchProperties()
-  }, [page])
-
-  const fetchFilters = async () => {
+  const fetchFilters = useCallback(async () => {
     const res = await axios.get("/properties/filters")
     setFiltersData(res.data.cities || {})
-  }
+  }, [])
 
-  const fetchProperties = async () => {
+  const fetchProperties = useCallback(async (targetPage = page) => {
     setLoading(true)
 
-    const res = await axios.get(
-      `/properties/all?city=${city}&locality=${locality}&bedrooms=${bedrooms}&max_price=${priceRange}&sort=${sort}&page=${page}&per_page=15`
-    )
+    try {
+      const params = new URLSearchParams({
+        max_price: String(priceRange),
+        page: String(targetPage),
+        per_page: "15",
+      })
 
-    setProperties(res.data.properties || [])
-    setTotalPages(res.data.total_pages || 1)
-    setLoading(false)
-  }
+      if (city) params.set("city", city)
+      if (locality) params.set("locality", locality)
+      if (bedrooms) params.set("bedrooms", bedrooms)
+      if (sort) params.set("sort", sort)
+
+      const res = await axios.get(`/properties/all?${params.toString()}`)
+
+      setProperties(res.data.properties || [])
+      setTotalPages(res.data.total_pages || 1)
+    } finally {
+      setLoading(false)
+    }
+  }, [bedrooms, city, locality, page, priceRange, sort])
+
+  useEffect(() => {
+    fetchFilters()
+  }, [fetchFilters])
+
+  useEffect(() => {
+    fetchProperties(page)
+  }, [fetchProperties, page])
 
   const toggleWishlist = async (propertyId, isInWishlist) => {
 
@@ -64,12 +76,12 @@ export default function Explore() {
       )
     }
 
-    fetchProperties()
+    fetchProperties(page)
   }
 
   const handleSearch = () => {
     setPage(1)
-    fetchProperties()
+    fetchProperties(1)
   }
 
   return (
@@ -206,7 +218,7 @@ export default function Explore() {
               <button
                 onClick={() => {
                   setPage(1)
-                  fetchProperties()
+                  fetchProperties(1)
                   setShowFilters(false)
                 }}
                 className="w-full bg-indigo-600 text-white rounded-xl py-3"
@@ -219,7 +231,11 @@ export default function Explore() {
         )}
       </div>
 
-      {properties.length === 0 ? (
+      {loading ? (
+    <div className="text-center py-20 text-gray-500 dark:text-gray-400">
+    Loading properties...
+  </div>
+) : properties.length === 0 ? (
     <div className="text-center py-20 text-gray-500 dark:text-gray-400">
     No property found
   </div>

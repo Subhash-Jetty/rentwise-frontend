@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from "../api/axios";
 
@@ -19,21 +19,21 @@ export default function PropertyDetails() {
   const token = localStorage.getItem("token")
   const role = localStorage.getItem("role")
 
-  useEffect(() => {
-    fetchProperty()
-  }, [id])
-
-  const fetchProperty = async () => {
+  const fetchProperty = useCallback(async () => {
     try {
       const res = await axios.get(
         `/properties/${id}`
       )
       setProperty(res.data)
-    } catch (err) {
+    } catch {
       setProperty(null)
     }
     setLoading(false)
-  }
+  }, [id])
+
+  useEffect(() => {
+    fetchProperty()
+  }, [fetchProperty])
 
   const handleAnalyze = async () => {
     try {

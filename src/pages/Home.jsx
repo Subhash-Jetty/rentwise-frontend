@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import axios from "../api/axios";
 import { Link, useNavigate } from "react-router-dom"
 
@@ -12,30 +12,30 @@ export default function Home() {
   const [locality, setLocality] = useState("")
   const [bedrooms, setBedrooms] = useState("")
 
-  useEffect(() => {
-    fetchFilters()
-    fetchFeatured()
-  }, [])
-
-  const fetchFeatured = async () => {
+  const fetchFeatured = useCallback(async () => {
     try {
       const res = await axios.get(
         "/properties/all?per_page=6&page=1"
       )
       setFeatured(res.data.properties || [])
-    } catch (err) {
+    } catch {
       console.error("Failed to fetch featured")
     }
-  }
+  }, [])
 
-  const fetchFilters = async () => {
+  const fetchFilters = useCallback(async () => {
     try {
       const res = await axios.get("/properties/filters")
       setFiltersData(res.data.cities || {})
     } catch (err) {
       console.error(err)
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    fetchFilters()
+    fetchFeatured()
+  }, [fetchFeatured, fetchFilters])
 
   const handleSearch = () => {
     navigate("/explore", {

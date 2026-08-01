@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import axios from "../api/axios";
 
@@ -16,18 +16,16 @@ export default function EditProperty() {
     description: ""
   })
 
-  const token = localStorage.getItem("token")
-
-  useEffect(() => {
-    fetchProperty()
-  }, [])
-
-  const fetchProperty = async () => {
+  const fetchProperty = useCallback(async () => {
     const res = await axios.get(
       `/properties/${id}`
     )
     setForm(res.data)
-  }
+  }, [id])
+
+  useEffect(() => {
+    fetchProperty()
+  }, [fetchProperty])
 
   const handleChange = (e) => {
     setForm({

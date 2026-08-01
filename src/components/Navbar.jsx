@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 export default function Navbar() {
 
@@ -32,18 +32,18 @@ export default function Navbar() {
     }
   }, [darkMode])
 
-  useEffect(() => {
-    checkAuth()
-    window.addEventListener("storage", checkAuth)
-    return () => window.removeEventListener("storage", checkAuth)
-  }, [])
-
-  const checkAuth = () => {
+  const checkAuth = useCallback(() => {
     const token = localStorage.getItem("token")
     const userRole = localStorage.getItem("role")
     setIsLoggedIn(!!token)
     setRole(userRole)
-  }
+  }, [])
+
+  useEffect(() => {
+    checkAuth()
+    window.addEventListener("storage", checkAuth)
+    return () => window.removeEventListener("storage", checkAuth)
+  }, [checkAuth])
 
   const handleLogout = () => {
     localStorage.removeItem("token")

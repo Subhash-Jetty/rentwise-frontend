@@ -29,7 +29,7 @@ export default function Login() {
       navigate("/")
       window.location.reload()
 
-    } catch (err) {
+    } catch {
       setError("Invalid credentials")
     }
 

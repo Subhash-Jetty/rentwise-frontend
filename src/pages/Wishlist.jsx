@@ -1,22 +1,21 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import axios from "../api/axios";
 import { Link } from "react-router-dom"
 
 export default function Wishlist() {
 
   const [properties, setProperties] = useState([])
-  const token = localStorage.getItem("token")
 
-  useEffect(() => {
-    fetchWishlist()
-  }, [])
-
-  const fetchWishlist = async () => {
+  const fetchWishlist = useCallback(async () => {
     const res = await axios.get(
       "/properties/wishlist"
     )
     setProperties(res.data)
-  }
+  }, [])
+
+  useEffect(() => {
+    fetchWishlist()
+  }, [fetchWishlist])
 
   const removeFromWishlist = async (id) => {
     await axios.delete(

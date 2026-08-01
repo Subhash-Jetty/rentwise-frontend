@@ -26,7 +26,7 @@ export default function Register() {
 
       navigate("/login")
 
-    } catch (err) {
+    } catch {
       setError("Registration failed")
     }
 
