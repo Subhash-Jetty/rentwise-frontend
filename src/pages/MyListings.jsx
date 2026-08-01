@@ -56,9 +56,10 @@ export default function MyListings() {
               >
 
 <img
-  src={p.images?.[0] || FALLBACK_PROPERTY_IMAGE}
+  src={p.images?.[0]?.url || FALLBACK_PROPERTY_IMAGE}
   alt=""
   className="w-full h-40 object-cover rounded mb-4"
+  onError={(e) => { e.target.onerror = null; e.target.src = FALLBACK_PROPERTY_IMAGE; }}
 />
 
                 <h2 className="font-semibold text-lg text-black dark:text-white">

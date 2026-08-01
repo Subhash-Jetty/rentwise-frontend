@@ -46,9 +46,10 @@ export default function Wishlist() {
               className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg overflow-hidden transition-colors"
             >
               <img
-  src={property.images?.[0] || FALLBACK_PROPERTY_IMAGE}
+  src={property.images?.[0]?.url || FALLBACK_PROPERTY_IMAGE}
   className="w-full h-56 object-cover"
   alt=""
+  onError={(e) => { e.target.onerror = null; e.target.src = FALLBACK_PROPERTY_IMAGE; }}
 />
 
               <div className="p-6">

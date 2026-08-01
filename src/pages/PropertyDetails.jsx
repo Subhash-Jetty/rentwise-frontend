@@ -118,9 +118,10 @@ export default function PropertyDetails() {
         <div className="relative mb-8">
 
           <img
-  src={property.images?.[currentImage] || FALLBACK_PROPERTY_IMAGE}
+  src={property.images?.[currentImage]?.url || FALLBACK_PROPERTY_IMAGE}
   alt=""
   className="w-full h-96 object-cover rounded-lg"
+  onError={(e) => { e.target.onerror = null; e.target.src = FALLBACK_PROPERTY_IMAGE; }}
 />
 
             {property.images?.length > 1 && (

@@ -262,9 +262,10 @@ export default function Explore() {
 
             <Link to={`/property/${property.id}`}>
               <img
-                src={property.images?.[0] || FALLBACK_PROPERTY_IMAGE}
+                src={property.images?.[0]?.url || FALLBACK_PROPERTY_IMAGE}
                 className="w-full h-60 object-cover"
                 alt=""
+                onError={(e) => { e.target.onerror = null; e.target.src = FALLBACK_PROPERTY_IMAGE; }}
               />
 
               <div className="p-6">
